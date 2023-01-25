@@ -1,5 +1,6 @@
 name: "Mywebsite"
 title: "My new website"
+output_dir: "docs"
 type: inverse
 left:
   - text: "About me"
