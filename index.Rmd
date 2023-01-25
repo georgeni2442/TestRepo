@@ -2,6 +2,7 @@
 title: "index_1"
 author: "George Ni"
 date: "2023-01-23"
+layout: cayman
 output:
   html_document: default
 ---
@@ -27,7 +28,7 @@ strikethrough ~~Salutations~~
 
 quotations "Howdy"
 
-![mudkip](mudkip.png)
+![mudkip](docs/mudkip.png)
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
