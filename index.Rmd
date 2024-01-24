@@ -1,5 +1,5 @@
 ---
-title: "index_1"
+title: "index"
 author: "George Ni"
 date: "2023-01-23"
 output:
