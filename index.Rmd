@@ -1,5 +1,5 @@
 ---
-title: "index"
+title: "Homepage"
 author: "George Ni"
 date: "2023-01-23"
 output:
@@ -11,40 +11,104 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-## Adding new Links is easy! The structure is [text](link)
+Hello! Here you'll find all of the exciting work and research I've been doing in BIO 145! 
 
-### Week 2: [New Page](newpage.html)
+![](mudkip.png)
 
-## R Markdown
+## About Me
 
-italic *Hello!*
+Hello! I'm **Dr. George Ni**, and I'm interested in invasive species ecology, and the use of computational approaches to answering management questions. 
 
-bold-face **Hi**
+Throughout this course, I'll use this website to document my work in **R**, including data visualization, ecological modeling, analysis of published datasets, and my final independent research project.
 
-subscript ~Hiya~
 
-superscript ^Yo^
 
-strikethrough ~~Salutations~~
+# Portfolio Directory
 
-quotations "Howdy"
+## Ecological Modeling
 
-![mudkip](mudkip.png)
+In this section, I explore how computational models can be used to represent ecological processes.
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Topics include:
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+- Exponential population growth
+- Logistic population growth
+- Predator-prey interactions
+- Effects of changing model parameters
 
-```{r cars}
-summary(cars)
+[**View my ecological modeling work →**](modeling.html)
+
+---
+
+## Recreating Published Research
+
+One goal of this course is to understand how computational analyses are used in published ecological research.
+
+Here, I work with real datasets from published studies and attempt to reproduce or extend some of their figures and analyses.
+
+[**View my paper replication project →**](paper_replication.html)
+
+---
+
+## Research Interests
+
+I'm especially interested in biological control and the ecology of parasitoids.
+
+One example is my research on the cold tolerance of *Tetrastichus planipennisi*, a parasitoid released as a biological control agent for emerald ash borer.
+
+[**Learn more about this research →**](Tet_Data_Analysis.html)
+
+---
+
+## Independent Research Project
+
+For my final project, I will develop an independent ecological or evolutionary research question using an existing dataset.
+
+This project will include:
+
+- A biological question and hypothesis
+- Exploration of a real dataset
+- Statistical analysis
+- Publication-quality figures
+- Interpretation of results
+- A mock scientific manuscript formatted for a selected journal
+
+[**View my final research project →**](final_project.html)
+
+---
+
+# Featured Figure
+
+Below is an example of the type of visualization that might appear in my portfolio.
+
+```{r example-figure}
+# Example plotting code could go here later
+
+x <- 1:10
+y <- x^2
+
+plot(
+  x, y,
+  type = "b",
+  xlab = "Example Predictor",
+  ylab = "Example Response",
+  main = "An Example BIO 145 Figure"
+)
 ```
 
-## Including Plots
+---
 
-You can also embed plots, for example:
+## What I'm Learning
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+By the end of BIO 145, this portfolio will document my progress in:
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+- Working with ecological and evolutionary datasets
+- Writing reproducible R code
+- Choosing appropriate statistical analyses
+- Building and evaluating computational models
+- Creating clear scientific figures
+- Interpreting published research
+- Communicating computational research
+
+---
+

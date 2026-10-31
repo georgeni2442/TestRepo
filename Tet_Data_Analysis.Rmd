@@ -1,0 +1,85 @@
+---
+title: "Tet_Data_Analysis"
+author: "George Ni"
+date: "2023-04-10"
+output:
+  html_document: 
+    theme: cerulean
+    highlight: tango
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+library(lubridate)
+library(timetk)
+library(plotly)
+```
+
+```{r}
+stats<-read.csv("SCP_Nov_Apr_Compiled.csv")
+```
+
+```{r}
+all(stats$Month %in% month.name) # Validate month names
+stats$Month<- factor(stats$Month, levels=c("November", "December", "January", "February", "March", "April"))
+edit_stats<-stats%>%
+  mutate(Treat=substr(Jar,3, nchar(Jar)), Treatment=ifelse(Treat=="Dense",yes = "Treatment", no="Control"), Block=substr(Jar, start=1, stop=1))%>%
+  mutate(Treatment=as.factor(Treatment))
+
+```
+
+```{r}
+plot<-ggplot(data=edit_stats, mapping=aes(x=Month, y=SCP_Value, fill=Treatment))+geom_boxplot(position="identity",alpha=0.5)+facet_wrap(~Block,ncol=1)+ylim(-30,-18)+ggtitle("SCP Values of Tets Winter 2021-22")+theme(axis.text.x=element_text(angle=25))+ylab(expression("Temperature" ( degree*C)))
+plot
+```
+
+
+```{r}
+x<-stats%>%
+  group_by(Jar,Month)%>%
+  summarise(MeanSCP=mean(SCP_Value))%>%
+  mutate(Block=substr(Jar, 1,1),Treat=substr(Jar,3, nchar(Jar)), Treatment=ifelse(Treat=="Dense",yes = "Treatment", no="Control"),month=match(Month, month.name))%>% #Month=as.POSIXct(month,format="%m")
+  ungroup()%>%
+  select(Treatment, Block, Month, MeanSCP)
+```
+
+```{r}
+#Boxplot of mean SCP values per month, and collapsed block down to one
+plot<-ggplot(data=x, aes(x=Month, y=MeanSCP, col=Treatment))+geom_boxplot()
+plot
+
+```
+```{r}
+
+plot<-ggplot(data=x, mapping=aes(x=Month, y=MeanSCP, col=Treatment))+geom_point(size=2)+facet_wrap(~Block, ncol=1)+ggtitle("Mean SCP Values of Tets Winter 2021-22")+theme(axis.text.x=element_text(angle=25))+ylab(expression("Temperature" ( degree*C)))
+plot
+```
+```{r}
+#Overlay treatments per block plot and see the differences 
+
+hist<-ggplot(data=stats, aes(x=SCP_Value))+geom_histogram(fill="red")+stat_function(fun = function(x, mean, sd, n){
+  n * dnorm(x = x, mean = mean, sd = sd)
+}, 
+args = with(stats, c(mean = mean(SCP_Value), sd = sd(SCP_Value), n= length(SCP_Value))))+scale_x_continuous("SCP Values")
+
+hist
+
+```
+```{r}
+#log transformed
+log<-stats%>%
+  mutate(log=log(SCP_Value+1-min(SCP_Value)))
+
+hist<-ggplot(data=log, aes(x=log))+geom_histogram(fill="darkred")+ggtitle("SCP Histogram (Log-scaled)")
+hist
+
+```
+```{r}
+
+plot<-ggplot(data=log, mapping=aes(x=Month, y=log, fill=Jar))+geom_boxplot()+facet_wrap(~Jar,ncol=2)
+plot
+
+
+```
